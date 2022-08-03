@@ -95,6 +95,7 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP = 1.38
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -124,8 +125,10 @@ def read_package(workout_type: str, data: list) -> Training:
         training_type = {'RUN': Running,
                          'SWM': Swimming,
                          'WLK': SportsWalking}
-    except:
-        print('Ошибка данных')
+     
+    except KeyError:
+        print(f'Получены данные о неизвестном типе тренировки. '
+              f'Ожидали: {list(training_type.keys())}')
     return training_type[workout_type](*data)
 
 
