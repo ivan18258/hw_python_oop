@@ -125,7 +125,7 @@ def read_package(workout_type: str, data: list) -> Training:
         training_type = {'RUN': Running,
                          'SWM': Swimming,
                          'WLK': SportsWalking}
-     
+
     except KeyError:
         print(f'Получены данные о неизвестном типе тренировки. '
               f'Ожидали: {list(training_type.keys())}')
