@@ -35,7 +35,6 @@ class Training:
         self.duration = duration
         self.weight = weight
 
-
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         return (self.action * self.LEN_STEP / self.M_IN_KM)
@@ -125,12 +124,11 @@ def read_package(workout_type: str, data: list) -> Training:
         training_type = {'RUN': Running,
                          'SWM': Swimming,
                          'WLK': SportsWalking}
-
-        object = training_type[workout_type](*data) #Обнаружил что в предыдущей версии исключение не срабатывало, исправил
+        return training_type[workout_type](*data)
+# Обнаружил что в предыдущей версии исключение не срабатывало, исправил
     except KeyError:
         print(f'Получены данные о неизвестном типе тренировки. '
               f'Ожидали: {list(training_type.keys())}')
-    return object
 
 
 def main(training: Training) -> None:
@@ -144,6 +142,7 @@ if __name__ == '__main__':
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
+        ('WK', [9000, 1, 75, 180]),
     ]
 
     for workout_type, data in packages:
